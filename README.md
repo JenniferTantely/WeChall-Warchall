@@ -15,3 +15,16 @@ pour mon cas je suis allé sur putty avec VMWare allumé et je me suis d'abord c
 - donc on fait **cd /home/level** pour accéder au dossier
 - à l'intérieur, on entre avec **cd 00_WELCOME** dans le dossier 00_welcome dans laquel se trouve un fichier README.md
 - en faisant **cat README.md**, on trouve la solution à l'intérieur de deux côtes
+
+##level01:
+- dans /home/level, on entre dans le dossier 01_choice_tree avec **cd 01_choice_tree** 
+- avec **ls** on peut y voir un fichier README.md mais la solution n'y était pas
+- toujours à l'intérieur, il y avait aussi 3 dossiers et on entre dans le dossier blue, **cd blue** et puis on fait **ls**
+- dans ce dossier il y avait un autre dossier hats et on peut y entrer avec **cd hats**
+- dans ce dossier hats avec **ls**, il y avait un dossier solution et on y entre avec **cd solution**
+- trois dossiers : black, grey et white s'affichait dans solution puis on entre dans grey avec **cd grey** car :
+> DEEP IN YOUR HEART YOU SHOULD BECOME A **GRAY**HAT 
+ALWAYS KEEP A JOKER.
+- puis, à l'interieur avec un autre **ls** il y avait un dossier patience et on fait **cd patience**
+- après on peut trouver le fichier SOLUTION.txt avec **ls**
+- en faisant **cat SOLUTION.txt**, on obtient la solution à l'intérieur de deux côtes 
