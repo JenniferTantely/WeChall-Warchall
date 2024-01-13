@@ -35,3 +35,8 @@ ALWAYS KEEP A JOKER.
 - on peut par la suite trouver un dossier caché appellé .porb et y entrer par **cd .porb**
 - en faisant **ls -al** dans ce dossier, on peut trouver un fichier .solution
 - en faisant **cat .solution**, on obtient la solution
+
+##level03:
+- en entrant dans le dossier /home/level/03 et en faisant **ls** dedans il n'y a rien 
+- mais avec **ls -al**, on peut voir un dossier et un fichier .bash_history
+- en faisant **cat .bash_history**, on accède au solution
