@@ -52,3 +52,7 @@ ALWAYS KEEP A JOKER.
 - donc on utilise **chmod +r README2.md** pour au moins _lire le contenu du fichier README2.md_
 - en revenant sur la commande **ls -al**, on peut constater que *le droit de lire le fichier a changé*
 - puis avec **cat README2.md** on accède au solution
+
+##level05:
+- en entrant dans /home/level/05_privacy, on peut voir un fichier README.md
+- en faisant **cat README.md**, on accède à la solution
