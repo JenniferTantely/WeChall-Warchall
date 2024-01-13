@@ -40,3 +40,15 @@ ALWAYS KEEP A JOKER.
 - en entrant dans le dossier /home/level/03 et en faisant **ls** dedans il n'y a rien 
 - mais avec **ls -al**, on peut voir un dossier et un fichier .bash_history
 - en faisant **cat .bash_history**, on accède au solution
+
+##level04:
+- en entrant dans le dossier /home/level/04_kwisatz$, on peut voir par **ls** un fichier README.nfo 
+- à l'interieur de ce fichier, il y a une indication qui dit d'*aller dans notre ~ qui veut dire notre répertoire personnel*
+- on execute alors **cd /home/user/TonNomUtilisateur**, pour moi c'était **cd /home/user/jennifer** pour accéder au répertoire personnel
+- dedans on entre dans le dossier level
+- puis à l'interieur on entre dans 04_kwisatz 
+- en tapant sur **ls** on peut voir deux fichiers dont l'un README.txt nous conseillant d'*aller dans le fichier README2.md un fichier pour le moment inaccessible*
+- en tapant **ls -al** on voit que on n'a aucun droit sur ce fichier 
+- donc on utilise **chmod +r README2.md** pour au moins _lire le contenu du fichier README2.md_
+- en revenant sur la commande **ls -al**, on peut constater que *le droit de lire le fichier a changé*
+- puis avec **cat README2.md** on accède au solution
