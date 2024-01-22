@@ -7,7 +7,8 @@
 pour mon cas je suis allé sur putty avec VMWare allumé et je me suis d'abord connecté en mode superutilisateur
 - se connecter sur le terminal et entrer le mot de passe ssh pour entrer 
 
-##level00:
+##Training: Warchall - The Beginning
+###level00:
 - après la connexion, on se retrouve tout de suite sur notre répertoire personnel
 > jennifer@warchall:~$
 - avec **ls** on regarde ce qu'il y a à l'intérieur 
@@ -16,7 +17,7 @@ pour mon cas je suis allé sur putty avec VMWare allumé et je me suis d'abord c
 - à l'intérieur, on entre avec **cd 00_WELCOME** dans le dossier 00_welcome dans laquel se trouve un fichier README.md
 - en faisant **cat README.md**, on trouve la solution
 
-##level01:
+###level01:
 - dans /home/level, on entre dans le dossier 01_choice_tree avec **cd 01_choice_tree** 
 - avec **ls** on peut y voir un fichier README.md mais la solution n'y était pas
 - toujours à l'intérieur, il y avait aussi 3 dossiers et on entre dans le dossier blue, **cd blue** et puis on fait **ls**
@@ -29,19 +30,19 @@ ALWAYS KEEP A JOKER.
 - après on peut trouver le fichier SOLUTION.txt avec **ls**
 - en faisant **cat SOLUTION.txt**, on obtient la solution
 
-##level02:
+###level02:
 - dans /home/level, on entre dans le dossier 02 et dedans en faisant **ls** on tombe sur des dossiers qui ne contiennent pas la solution mais informe qu'on est bien en *level02*
 - donc on execute la commande **ls -al**
 - on peut par la suite trouver un dossier caché appellé .porb et y entrer par **cd .porb**
 - en faisant **ls -al** dans ce dossier, on peut trouver un fichier .solution
 - en faisant **cat .solution**, on obtient la solution
 
-##level03:
+###level03:
 - en entrant dans le dossier /home/level/03 et en faisant **ls** dedans il n'y a rien 
 - mais avec **ls -al**, on peut voir un dossier et un fichier .bash_history
 - en faisant **cat .bash_history**, on accède au solution
 
-##level04:
+###level04:
 - en entrant dans le dossier /home/level/04_kwisatz$, on peut voir par **ls** un fichier README.nfo 
 - à l'interieur de ce fichier, il y a une indication qui dit d'*aller dans notre ~ qui veut dire notre répertoire personnel*
 - on execute alors **cd /home/user/TonNomUtilisateur**, pour moi c'était **cd /home/user/jennifer** pour accéder au répertoire personnel
@@ -53,6 +54,6 @@ ALWAYS KEEP A JOKER.
 - en revenant sur la commande **ls -al**, on peut constater que *le droit de lire le fichier a changé*
 - puis avec **cat README2.md** on accède au solution
 
-##level05:
+###level05:
 - en entrant dans /home/level/05_privacy, on peut voir un fichier README.md
 - en faisant **cat README.md**, on accède à la solution
