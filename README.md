@@ -8,6 +8,7 @@ pour mon cas je suis allé sur putty avec VMWare allumé et je me suis d'abord c
 - se connecter sur le terminal et entrer le mot de passe ssh pour entrer 
 
 ##Training: Warchall - The Beginning
+
 ###level00:
 - après la connexion, on se retrouve tout de suite sur notre répertoire personnel
 > jennifer@warchall:~$
@@ -57,3 +58,17 @@ ALWAYS KEEP A JOKER.
 ###level05:
 - en entrant dans /home/level/05_privacy, on peut voir un fichier README.md
 - en faisant **cat README.md**, on accède à la solution
+
+##Warchall: Live LFI
+- en cliquant sur Live LFI, on accède à un page web
+- puis en entrant sur le code source de cette page on peut voir qu'il a deux liens assez similaires 
+- et en cliquant sur l'un d'eux, on se retrouve dans la même page mais avec un URL différent et la langue de la page est : en anglais si on a un **URL=en**, en allemand si on a un **URL=de**
+- d'après les precédentes challenges qu'on a vu, la solution est souvent stockée dans un fichier README ou solution
+- si on essaie de changer **en** ou **de** en **solution.php** pour accéder à la solution, la solution n'y est pas encore 
+-  on utilise donc un wrapper de php pour pouvoir lire l'intégralité du fichier solution.php en utilisant le codage en base64
+>wrapper PHP : php://filter/convert.base64-encode/resource=solution.php
+- on change le **en** ou **de** dans l'URL en ce wrapper PHP 
+- une suite de caractères en sous forme d'ASCII s'affichent et on le copie
+- on va dans un autre site qui permet de décoder un base64 et on cole dessus la suite de caractères
+- on tape sur le bouton *decode* 
+- le contenu intégral du fichier **solution.php** s'affiche et on peut trouver dedans à l'intérieur de **' '** la solution.
