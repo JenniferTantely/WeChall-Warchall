@@ -74,8 +74,8 @@ ALWAYS KEEP A JOKER.
 - le contenu intégral du fichier **solution.php** s'affiche et on peut trouver dedans à l'intérieur de **' '** la solution.
 
 ##Warchall: Live RFI
-- on cliquant sur Live RFI, on accède à un page web
-- puis on entrant sur le code source de cette page on peut voir qu'il a deux liens avec 2href
+- En cliquant sur Live RFI, on accède à un page web
+- puis en entrant sur le code source de cette page on peut voir qu'il a deux liens avec 2href
 - si on clique sur le premier lien, on se retrouve dans la page précedente en anglais et si on clique sur le deuxieme lien, on se retrouve sur une page similaire mais en allemand. Tous deux avec des URL différents à partir du caractère **=** dans l'URL
 - si on change en **solution.php** les caractères après **=**, on accède à une page mais la solution n'y est pas 
 -  on utilise donc un wrapper de php pour pouvoir lire l'intégralité du fichier solution.php en utilisant le codage en base64
@@ -85,3 +85,12 @@ ALWAYS KEEP A JOKER.
 - on va dans un autre site qui permet de décoder un base64 et on cole dessus la suite de caractères
 - on tape sur le bouton *decode* 
 - le contenu intégral du fichier **solution.php** s'affiche et on peut trouver dedans tout en bas en **'  '** la solution.
+
+##Choose your Path
+- après avoir analyser la fonction donnée sur le fichier charp.c, il retourne le nombre moyen de caractère par ligne d'un fichier donné
+- cependant avec **ls -al** on peut voir que ce fichier ne peut pas être executé par d'autres utilisateurs
+- contrairement à cela un autre fichier charp peut 
+- on peut donc envisager une méthode similaire à l'injection pour avoir la solution avec :
+>./charp "solution.txt | cat solution.txt > ~/solution10.txt"
+- puis on affiche le contenu du fichier **solution10.txt** avec **cat /home/user/jennifer/solution10.txt** ou simplement avec **cat ~/solution10.txt**
+- la solution ou notre flag se trouve dedans
