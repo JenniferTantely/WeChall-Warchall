@@ -102,3 +102,14 @@ ALWAYS KEEP A JOKER.
 - puis on modifie la variable d'environnement afin d'inclure uniquement le répertoire personnel où se trouve notre lien symbolique **wc** avec :
 > PATH=~ ./charp2 "/bin/cat solution.txt 1>&2" 
 - la solution s'affiche
+
+##Py-Tong
+- en analysant les lignes de codes présentés par le fichier pytong.py, on peut en conclure deux choses :
+    - d'abord, si la fonction **main** dans ce fichier renvoie **true** on obtiendra la solution
+    - puis, pour que ça se fait on doit soit donner en argument un chemin vers un *fichier temporaire* soit donner en argument un chemin vers un fichier qui après lecture le contenu du fichier change
+- vu qu'on ne peut pas se diriger vers un chemin contenant **/tmp** d'après la fonction, on doit alors chercher une autre alternative
+- pour se faire on utilise un fichier virtuel qui est un fichier *temporaire*  à l'aide du commande **<()**
+- puisqu'on veut un contenu temporaire il suffit d'écrire quelque chose sur ce fichier avec la commande **echo**
+- donc sur le terminal, on saisit:
+>./pytong <(echo "SearchingForFlag")
+- la solution s'affiche automatiquement
