@@ -113,3 +113,18 @@ ALWAYS KEEP A JOKER.
 - donc sur le terminal, on saisit:
 >./pytong <(echo "SearchingForFlag")
 - la solution s'affiche automatiquement
+
+##SSH...Z is sleeping
+- on peut trouver la clé publique de level08 dans **/home/level/08_sshz/backups/authorized_keys.backup**, il nous faut donc trouver la clé privée pour s'authentifier en level08
+- pour se faire, on utilise
+>ssh-keygen -l -E md5 -f /home/level/08_sshz/backups/authorized_keys.backup
+
+afin de voir si on peut obtenir l'empreinte du clé public ssh en md5 et exploiter une des vulnérabilités de l'empreinte md5(la même empreinte sur la clé publique et sur clé privée)
+- puis sur le site https://hdm.io/tools/debian-openssl/ on peut voir un fichier zip https://hdm.io/tools/debian-openssl/debian_ssh_rsa_2048_x86.tar.bz2
+- après le téléchargement et l'extraction de ce zip on peut accéder à plusieurs fichiers contenant des clés privées et ayant des noms sous forme de md5 mais sans les **:**
+- on cherche donc dessus **2bcd07a701e94a0474d77ee4d6d0f806** (l'empreinte sans les **:** obtenus à partir de la commande avec la clé publique) 
+- on obient alors un fichier de ce même nom et on l'envoie dans notre répértoire personnel dans warchall avec :
+>scp -P 19198 C:\Users\Jenny\Downloads\rsa\2048\2bcd07a701e94a0474d77ee4d6d0f80 -23669 jennifer@warchall.net:/home/user/jennifer
+- puis de retour sur le serveur on s'identifie avec le chemin de la clé privée:
+>ssh -i ~/2bcd07a701e94a0474d77ee4d6d0f806-23669 level08@warchall.net -p 19198
+- la solution s'affiche
