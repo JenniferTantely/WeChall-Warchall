@@ -148,7 +148,7 @@ ssh -i ~/2bcd07a701e94a0474d77ee4d6d0f806-23669 level08@warchall.net -p 19198
 
 ##Warchall:Tryouts
 - après avoir analysé le code source de ce challenge, on  peut en conclure que la fonction consiste à donner la solution après 3 entrées correctes des chiffres donné par /dev/urandom(ce qui est vraiment difficile à faire)
-- donc pour exploiter la faille de cela, on crée notre propre fichier **cat** dans notre répertoire personnel qui va lire un fichier et renvoyer e contenu lit dans un autre fichier
+- donc en échange, on crée notre propre fichier **cat** dans notre répertoire personnel qui va lire un fichier et renvoyer e contenu lit dans un autre fichier
 - le cat que j'ai choisit d'utiliser :
 ```
 #include <stdio.h>
